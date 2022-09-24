@@ -22,8 +22,15 @@ class Post extends Model
     {
         return $this->belongsTo(User::class);
     }
+    
+    public function getImagePathAttribute()
+    {
+        return 'images/posts/' . $this->image;
+    }
+
     public function getImageUrlAttribute()
     {
-        return Storage::url('images/posts/' . $this->image);
+        return Storage::url($this->image_path);
     }
+
 }
