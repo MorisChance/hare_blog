@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [PostController::class, 'index'])
-->name('root');
+    ->name('root');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -26,4 +26,4 @@ Route::resource('posts', PostController::class)
     ->middleware('auth');
 Route::resource('posts', PostController::class)
     ->only(['index', 'show']);
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
