@@ -74,9 +74,10 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        $post = Post::find($id);
-        return view('posts.show', compact('post'));
+    {       
+        $post = Post::with(['user'])->find($id);
+        $comments = $post->comments()->latest()->get()->load(['user']);
+        return view('posts.show', compact('post', 'comments'));
     }
 
     /**
